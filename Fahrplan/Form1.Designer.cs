@@ -54,10 +54,10 @@
             // 
             // btnMaps
             // 
-            this.btnMaps.Location = new System.Drawing.Point(994, 40);
+            this.btnMaps.Location = new System.Drawing.Point(1020, 40);
             this.btnMaps.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnMaps.Name = "btnMaps";
-            this.btnMaps.Size = new System.Drawing.Size(488, 105);
+            this.btnMaps.Size = new System.Drawing.Size(462, 105);
             this.btnMaps.TabIndex = 1;
             this.btnMaps.Text = "Google Maps";
             this.btnMaps.UseVisualStyleBackColor = true;
@@ -112,10 +112,10 @@
             // 
             // btnAbfahrt
             // 
-            this.btnAbfahrt.Location = new System.Drawing.Point(147, 28);
+            this.btnAbfahrt.Location = new System.Drawing.Point(218, 40);
             this.btnAbfahrt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAbfahrt.Name = "btnAbfahrt";
-            this.btnAbfahrt.Size = new System.Drawing.Size(513, 105);
+            this.btnAbfahrt.Size = new System.Drawing.Size(442, 105);
             this.btnAbfahrt.TabIndex = 15;
             this.btnAbfahrt.Text = "Abfahrtstabelle";
             this.btnAbfahrt.UseVisualStyleBackColor = true;
@@ -134,7 +134,7 @@
             // lblDatum
             // 
             this.lblDatum.AutoSize = true;
-            this.lblDatum.Location = new System.Drawing.Point(913, 389);
+            this.lblDatum.Location = new System.Drawing.Point(895, 389);
             this.lblDatum.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDatum.Name = "lblDatum";
             this.lblDatum.Size = new System.Drawing.Size(104, 29);
@@ -164,7 +164,7 @@
             // 
             // btnSuchen
             // 
-            this.btnSuchen.Location = new System.Drawing.Point(1696, 222);
+            this.btnSuchen.Location = new System.Drawing.Point(1696, 202);
             this.btnSuchen.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnSuchen.Name = "btnSuchen";
             this.btnSuchen.Size = new System.Drawing.Size(260, 92);
@@ -178,7 +178,7 @@
             this.dtpDatum.Location = new System.Drawing.Point(1021, 383);
             this.dtpDatum.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dtpDatum.Name = "dtpDatum";
-            this.dtpDatum.Size = new System.Drawing.Size(441, 35);
+            this.dtpDatum.Size = new System.Drawing.Size(461, 35);
             this.dtpDatum.TabIndex = 9;
             // 
             // dtgverbindung
@@ -259,6 +259,7 @@
             this.lsbxSuche_Von.Name = "lsbxSuche_Von";
             this.lsbxSuche_Von.Size = new System.Drawing.Size(442, 62);
             this.lsbxSuche_Von.TabIndex = 26;
+            this.lsbxSuche_Von.Visible = false;
             this.lsbxSuche_Von.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lsbxSuche_Von_KeyDown);
             // 
             // lsbxSuche_Nache
@@ -269,6 +270,7 @@
             this.lsbxSuche_Nache.Name = "lsbxSuche_Nache";
             this.lsbxSuche_Nache.Size = new System.Drawing.Size(462, 62);
             this.lsbxSuche_Nache.TabIndex = 27;
+            this.lsbxSuche_Nache.Visible = false;
             this.lsbxSuche_Nache.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lsbxSuche_Nache_KeyDown);
             // 
             // Form1

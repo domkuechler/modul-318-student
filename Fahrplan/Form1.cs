@@ -26,6 +26,7 @@ namespace Fahrplan
             lsbxSuche_Nache.Visible = false;
         }
 
+        //Sucht die Station
         private void Get_Stations(string text)
         {
             try
@@ -60,7 +61,7 @@ namespace Fahrplan
             }
         }
 
-
+        //Definiert die Werte für das DataGridView
         public string Get_TableFromDataGrid()
         {
             StringBuilder strTable = new StringBuilder();
@@ -99,6 +100,7 @@ namespace Fahrplan
             return strTable.ToString();
         }
 
+        //Methoden zum auslesen der gesuchten verbindung
         private void Get_Grid()
         {
             Cursor.Current = Cursors.WaitCursor;
@@ -122,6 +124,7 @@ namespace Fahrplan
             UseWaitCursor = false;
         }
 
+        //Methode zum auslesen der Verbindungen für die Abfahrtstabelle
         private void Get_2_Grid()
         {
             DataTable dtt_routes = new DataTable();
@@ -141,6 +144,7 @@ namespace Fahrplan
             dtgverbindung.DataSource = dtt_routes;
         }
 
+
         private string Get_Date(string date1)
         {
             string date2 = date1.Remove(10);
@@ -155,6 +159,7 @@ namespace Fahrplan
             return time2;
         }
 
+        //Event der die Methode Get_Grid aufruft zum anzeigen der gewählten verbindung im DataGridView
         private void btnSuchen_Click(object sender, EventArgs e)
         {
             if (txtSuche_Von.Text != string.Empty)
@@ -167,6 +172,7 @@ namespace Fahrplan
             }
         }
 
+        //Event der die Methode Get_2_Grid aufruft zum anzeigen der Abfahrtstafel im DataGridView
         private void btnAbfahrt_Click(object sender, EventArgs e)
         {
             if (btnAbfahrt.Text != string.Empty)
@@ -178,11 +184,14 @@ namespace Fahrplan
                 MessageBox.Show("Bitte geben Sie einen Ort ein");
             }
         }
+
+        //Öffnet das Form2 zum aufrufen von Gmap
         private void btnMaps_Click(object sender, EventArgs e)
         {
             Maps.Show();
         }
 
+        //Event zum senden einer E-Mail an eine E-mail Adresse
         private void btbEmail_Click(object sender, EventArgs e)
         {
             if (txtEmail.Text == "")

@@ -22,6 +22,8 @@ namespace Fahrplan
 
             lsbxStation.Visible = false;
         }
+
+        //Methode um die Stationen zu suchen
         private void Get_Stations(string text)
         {
             try
@@ -49,6 +51,8 @@ namespace Fahrplan
                 MessageBox.Show("Es konnte keine Verbindung hergestellt werden überprüfen sie die Internet verbindung");
             }
         }
+
+        //Erstellt eine Gmap für die gesuchte Station
         private void Create_GmapStation(string x, string y)
         {
             string url = "https://www.google.ch/maps/place/" + x + "," + y;
@@ -57,7 +61,7 @@ namespace Fahrplan
 
 
        
-
+        //Automatische vervollständigung
         private void txtStation_TextChanged(object sender, EventArgs e)
         {
             Station = true;
@@ -74,6 +78,7 @@ namespace Fahrplan
             Get_Stations(txtStation.Text);
         }
 
+        //von von textbox auf Listbox zugreifen mittels Tastatur
         private void txtStation_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Down && lsbxStation.SelectedIndex < lsbxStation.Items.Count - 1)
@@ -89,11 +94,13 @@ namespace Fahrplan
             }
         }
 
+        //
         private void txtStation_Enter(object sender, EventArgs e)
         {
             lsbxStation.Visible = true;
         }
 
+        //Wählt die gewählte Station und schreibt si in die Textbox
         private void lsbxStation_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -104,6 +111,7 @@ namespace Fahrplan
             }
         }
 
+        //Ruft die methode Gmap auf um
         private void btnSuchen_Click(object sender, EventArgs e)
         {
             if (txtStation.Text != string.Empty)
