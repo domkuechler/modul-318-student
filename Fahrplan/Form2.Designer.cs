@@ -57,7 +57,7 @@
             this.lsbxStation.Location = new System.Drawing.Point(220, 166);
             this.lsbxStation.Margin = new System.Windows.Forms.Padding(7, 7, 7, 7);
             this.lsbxStation.Name = "lsbxStation";
-            this.lsbxStation.Size = new System.Drawing.Size(1154, 178);
+            this.lsbxStation.Size = new System.Drawing.Size(1149, 178);
             this.lsbxStation.TabIndex = 4;
             this.lsbxStation.Visible = false;
             this.lsbxStation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lsbxStation_KeyDown);
