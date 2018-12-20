@@ -40,39 +40,48 @@
             this.btnSuchen = new System.Windows.Forms.Button();
             this.dtpDatum = new System.Windows.Forms.DateTimePicker();
             this.dtgverbindung = new System.Windows.Forms.DataGridView();
-            this.txtNach = new System.Windows.Forms.TextBox();
-            this.txtVon = new System.Windows.Forms.TextBox();
             this.lblNach = new System.Windows.Forms.Label();
-            this.lsbxVon = new System.Windows.Forms.ListBox();
-            this.lsbxNach = new System.Windows.Forms.ListBox();
+            this.btbEmail = new System.Windows.Forms.Button();
+            this.txtEmail = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtSuche_Von = new System.Windows.Forms.TextBox();
+            this.txtSuche_Nach = new System.Windows.Forms.TextBox();
+            this.lsbxSuche_Von = new System.Windows.Forms.ListBox();
+            this.lsbxSuche_Nache = new System.Windows.Forms.ListBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgverbindung)).BeginInit();
             this.SuspendLayout();
             // 
             // btnMaps
             // 
-            this.btnMaps.Location = new System.Drawing.Point(286, 25);
-            this.btnMaps.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.btnMaps.Location = new System.Drawing.Point(994, 40);
+            this.btnMaps.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnMaps.Name = "btnMaps";
-            this.btnMaps.Size = new System.Drawing.Size(209, 47);
+            this.btnMaps.Size = new System.Drawing.Size(488, 105);
             this.btnMaps.TabIndex = 1;
             this.btnMaps.Text = "Google Maps";
             this.btnMaps.UseVisualStyleBackColor = true;
+            this.btnMaps.Click += new System.EventHandler(this.btnMaps_Click);
             // 
             // lblVon
             // 
             this.lblVon.AutoSize = true;
-            this.lblVon.Location = new System.Drawing.Point(9, 100);
-            this.lblVon.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.lblVon.Location = new System.Drawing.Point(142, 234);
+            this.lblVon.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblVon.Name = "lblVon";
-            this.lblVon.Size = new System.Drawing.Size(33, 13);
+            this.lblVon.Size = new System.Drawing.Size(71, 29);
             this.lblVon.TabIndex = 4;
             this.lblVon.Text = "VON:";
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.lsbxNach);
-            this.panel1.Controls.Add(this.lsbxVon);
+            this.panel1.Controls.Add(this.lsbxSuche_Nache);
+            this.panel1.Controls.Add(this.lsbxSuche_Von);
+            this.panel1.Controls.Add(this.txtSuche_Nach);
+            this.panel1.Controls.Add(this.txtSuche_Von);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.txtEmail);
+            this.panel1.Controls.Add(this.btbEmail);
             this.panel1.Controls.Add(this.btbSchliessen);
             this.panel1.Controls.Add(this.btnAbfahrt);
             this.panel1.Controls.Add(this.lblGes_Ver);
@@ -82,33 +91,31 @@
             this.panel1.Controls.Add(this.btnSuchen);
             this.panel1.Controls.Add(this.dtpDatum);
             this.panel1.Controls.Add(this.dtgverbindung);
-            this.panel1.Controls.Add(this.txtNach);
-            this.panel1.Controls.Add(this.txtVon);
             this.panel1.Controls.Add(this.lblNach);
             this.panel1.Controls.Add(this.lblVon);
             this.panel1.Controls.Add(this.btnMaps);
-            this.panel1.Location = new System.Drawing.Point(26, 17);
-            this.panel1.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.panel1.Location = new System.Drawing.Point(61, 38);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(757, 472);
+            this.panel1.Size = new System.Drawing.Size(2015, 1201);
             this.panel1.TabIndex = 5;
             // 
             // btbSchliessen
             // 
-            this.btbSchliessen.Location = new System.Drawing.Point(409, 436);
-            this.btbSchliessen.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.btbSchliessen.Location = new System.Drawing.Point(947, 1025);
+            this.btbSchliessen.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btbSchliessen.Name = "btbSchliessen";
-            this.btbSchliessen.Size = new System.Drawing.Size(87, 25);
+            this.btbSchliessen.Size = new System.Drawing.Size(203, 56);
             this.btbSchliessen.TabIndex = 16;
             this.btbSchliessen.Text = "Schliessen";
             this.btbSchliessen.UseVisualStyleBackColor = true;
             // 
             // btnAbfahrt
             // 
-            this.btnAbfahrt.Location = new System.Drawing.Point(63, 25);
-            this.btnAbfahrt.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.btnAbfahrt.Location = new System.Drawing.Point(147, 28);
+            this.btnAbfahrt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAbfahrt.Name = "btnAbfahrt";
-            this.btnAbfahrt.Size = new System.Drawing.Size(220, 47);
+            this.btnAbfahrt.Size = new System.Drawing.Size(513, 105);
             this.btnAbfahrt.TabIndex = 15;
             this.btnAbfahrt.Text = "Abfahrtstabelle";
             this.btnAbfahrt.UseVisualStyleBackColor = true;
@@ -117,20 +124,20 @@
             // lblGes_Ver
             // 
             this.lblGes_Ver.AutoSize = true;
-            this.lblGes_Ver.Location = new System.Drawing.Point(224, 204);
-            this.lblGes_Ver.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.lblGes_Ver.Location = new System.Drawing.Point(913, 492);
+            this.lblGes_Ver.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblGes_Ver.Name = "lblGes_Ver";
-            this.lblGes_Ver.Size = new System.Drawing.Size(110, 13);
+            this.lblGes_Ver.Size = new System.Drawing.Size(245, 29);
             this.lblGes_Ver.TabIndex = 14;
             this.lblGes_Ver.Text = "Gesuchte Verbindung";
             // 
             // lblDatum
             // 
             this.lblDatum.AutoSize = true;
-            this.lblDatum.Location = new System.Drawing.Point(144, 182);
-            this.lblDatum.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.lblDatum.Location = new System.Drawing.Point(913, 389);
+            this.lblDatum.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDatum.Name = "lblDatum";
-            this.lblDatum.Size = new System.Drawing.Size(49, 13);
+            this.lblDatum.Size = new System.Drawing.Size(104, 29);
             this.lblDatum.TabIndex = 13;
             this.lblDatum.Text = "DATUM:";
             // 
@@ -138,29 +145,29 @@
             // 
             this.dtpZeit.CustomFormat = "HH:mm";
             this.dtpZeit.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpZeit.Location = new System.Drawing.Point(61, 180);
-            this.dtpZeit.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.dtpZeit.Location = new System.Drawing.Point(218, 383);
+            this.dtpZeit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dtpZeit.Name = "dtpZeit";
             this.dtpZeit.ShowUpDown = true;
-            this.dtpZeit.Size = new System.Drawing.Size(62, 20);
+            this.dtpZeit.Size = new System.Drawing.Size(139, 35);
             this.dtpZeit.TabIndex = 12;
             // 
             // lblZeit
             // 
             this.lblZeit.AutoSize = true;
-            this.lblZeit.Location = new System.Drawing.Point(9, 182);
-            this.lblZeit.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.lblZeit.Location = new System.Drawing.Point(142, 389);
+            this.lblZeit.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblZeit.Name = "lblZeit";
-            this.lblZeit.Size = new System.Drawing.Size(34, 13);
+            this.lblZeit.Size = new System.Drawing.Size(71, 29);
             this.lblZeit.TabIndex = 11;
             this.lblZeit.Text = "ZEIT:";
             // 
             // btnSuchen
             // 
-            this.btnSuchen.Location = new System.Drawing.Point(397, 178);
-            this.btnSuchen.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.btnSuchen.Location = new System.Drawing.Point(1696, 222);
+            this.btnSuchen.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnSuchen.Name = "btnSuchen";
-            this.btnSuchen.Size = new System.Drawing.Size(99, 20);
+            this.btnSuchen.Size = new System.Drawing.Size(260, 92);
             this.btnSuchen.TabIndex = 10;
             this.btnSuchen.Text = "Verbindung suchen";
             this.btnSuchen.UseVisualStyleBackColor = true;
@@ -168,77 +175,109 @@
             // 
             // dtpDatum
             // 
-            this.dtpDatum.Location = new System.Drawing.Point(200, 179);
-            this.dtpDatum.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.dtpDatum.Location = new System.Drawing.Point(1021, 383);
+            this.dtpDatum.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dtpDatum.Name = "dtpDatum";
-            this.dtpDatum.Size = new System.Drawing.Size(175, 20);
+            this.dtpDatum.Size = new System.Drawing.Size(441, 35);
             this.dtpDatum.TabIndex = 9;
             // 
             // dtgverbindung
             // 
+            this.dtgverbindung.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtgverbindung.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgverbindung.Location = new System.Drawing.Point(61, 224);
-            this.dtgverbindung.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.dtgverbindung.Location = new System.Drawing.Point(147, 538);
+            this.dtgverbindung.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dtgverbindung.Name = "dtgverbindung";
             this.dtgverbindung.RowTemplate.Height = 37;
-            this.dtgverbindung.Size = new System.Drawing.Size(619, 199);
+            this.dtgverbindung.Size = new System.Drawing.Size(1830, 467);
             this.dtgverbindung.TabIndex = 8;
-            // 
-            // txtNach
-            // 
-            this.txtNach.Location = new System.Drawing.Point(61, 137);
-            this.txtNach.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
-            this.txtNach.Multiline = true;
-            this.txtNach.Name = "txtNach";
-            this.txtNach.Size = new System.Drawing.Size(437, 25);
-            this.txtNach.TabIndex = 7;
-            this.txtNach.TabStopChanged += new System.EventHandler(this.txtNach_TabStopChanged);
-            // 
-            // txtVon
-            // 
-            this.txtVon.Location = new System.Drawing.Point(61, 97);
-            this.txtVon.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
-            this.txtVon.Multiline = true;
-            this.txtVon.Name = "txtVon";
-            this.txtVon.Size = new System.Drawing.Size(437, 25);
-            this.txtVon.TabIndex = 6;
-            this.txtVon.TextChanged += new System.EventHandler(this.txtVon_TextChanged);
-            this.txtVon.Enter += new System.EventHandler(this.txtVon_Enter);
-            this.txtVon.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtVon_KeyDown);
             // 
             // lblNach
             // 
             this.lblNach.AutoSize = true;
-            this.lblNach.Location = new System.Drawing.Point(9, 146);
-            this.lblNach.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.lblNach.Location = new System.Drawing.Point(913, 234);
+            this.lblNach.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblNach.Name = "lblNach";
-            this.lblNach.Size = new System.Drawing.Size(40, 13);
+            this.lblNach.Size = new System.Drawing.Size(86, 29);
             this.lblNach.TabIndex = 5;
             this.lblNach.Text = "NACH:";
             // 
-            // lsbxVon
+            // btbEmail
             // 
-            this.lsbxVon.FormattingEnabled = true;
-            this.lsbxVon.Location = new System.Drawing.Point(60, 123);
-            this.lsbxVon.Name = "lsbxVon";
-            this.lsbxVon.Size = new System.Drawing.Size(440, 56);
-            this.lsbxVon.TabIndex = 17;
+            this.btbEmail.Location = new System.Drawing.Point(1696, 413);
+            this.btbEmail.Margin = new System.Windows.Forms.Padding(2);
+            this.btbEmail.Name = "btbEmail";
+            this.btbEmail.Size = new System.Drawing.Size(260, 92);
+            this.btbEmail.TabIndex = 21;
+            this.btbEmail.Text = "E-Mail senden";
+            this.btbEmail.UseVisualStyleBackColor = true;
+            this.btbEmail.Click += new System.EventHandler(this.btbEmail_Click);
             // 
-            // lsbxNach
+            // txtEmail
             // 
-            this.lsbxNach.FormattingEnabled = true;
-            this.lsbxNach.Location = new System.Drawing.Point(60, 161);
-            this.lsbxNach.Name = "lsbxNach";
-            this.lsbxNach.Size = new System.Drawing.Size(440, 56);
-            this.lsbxNach.TabIndex = 18;
+            this.txtEmail.Location = new System.Drawing.Point(1696, 358);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(267, 35);
+            this.txtEmail.TabIndex = 22;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(1591, 364);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(82, 29);
+            this.label1.TabIndex = 23;
+            this.label1.Text = "E-Mail";
+            // 
+            // txtSuche_Von
+            // 
+            this.txtSuche_Von.Location = new System.Drawing.Point(218, 222);
+            this.txtSuche_Von.Multiline = true;
+            this.txtSuche_Von.Name = "txtSuche_Von";
+            this.txtSuche_Von.Size = new System.Drawing.Size(442, 41);
+            this.txtSuche_Von.TabIndex = 24;
+            this.txtSuche_Von.TextChanged += new System.EventHandler(this.txtSuche_Von_TextChanged);
+            this.txtSuche_Von.Enter += new System.EventHandler(this.txtSuche_Von_Enter);
+            this.txtSuche_Von.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSuche_Von_KeyDown);
+            // 
+            // txtSuche_Nach
+            // 
+            this.txtSuche_Nach.Location = new System.Drawing.Point(1020, 222);
+            this.txtSuche_Nach.Multiline = true;
+            this.txtSuche_Nach.Name = "txtSuche_Nach";
+            this.txtSuche_Nach.Size = new System.Drawing.Size(462, 41);
+            this.txtSuche_Nach.TabIndex = 25;
+            this.txtSuche_Nach.TextChanged += new System.EventHandler(this.txtSuche_Nach_TextChanged);
+            this.txtSuche_Nach.Enter += new System.EventHandler(this.txtSuche_Nach_Enter);
+            this.txtSuche_Nach.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSuche_Nach_KeyDown);
+            // 
+            // lsbxSuche_Von
+            // 
+            this.lsbxSuche_Von.FormattingEnabled = true;
+            this.lsbxSuche_Von.ItemHeight = 29;
+            this.lsbxSuche_Von.Location = new System.Drawing.Point(218, 260);
+            this.lsbxSuche_Von.Name = "lsbxSuche_Von";
+            this.lsbxSuche_Von.Size = new System.Drawing.Size(442, 62);
+            this.lsbxSuche_Von.TabIndex = 26;
+            this.lsbxSuche_Von.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lsbxSuche_Von_KeyDown);
+            // 
+            // lsbxSuche_Nache
+            // 
+            this.lsbxSuche_Nache.FormattingEnabled = true;
+            this.lsbxSuche_Nache.ItemHeight = 29;
+            this.lsbxSuche_Nache.Location = new System.Drawing.Point(1020, 260);
+            this.lsbxSuche_Nache.Name = "lsbxSuche_Nache";
+            this.lsbxSuche_Nache.Size = new System.Drawing.Size(462, 62);
+            this.lsbxSuche_Nache.TabIndex = 27;
+            this.lsbxSuche_Nache.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lsbxSuche_Nache_KeyDown);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(917, 515);
+            this.ClientSize = new System.Drawing.Size(2140, 1328);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.panel1.ResumeLayout(false);
@@ -254,8 +293,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DateTimePicker dtpDatum;
         private System.Windows.Forms.DataGridView dtgverbindung;
-        private System.Windows.Forms.TextBox txtNach;
-        private System.Windows.Forms.TextBox txtVon;
         private System.Windows.Forms.Label lblNach;
         private System.Windows.Forms.Button btnSuchen;
         private System.Windows.Forms.Button btbSchliessen;
@@ -264,8 +301,13 @@
         private System.Windows.Forms.Label lblDatum;
         private System.Windows.Forms.DateTimePicker dtpZeit;
         private System.Windows.Forms.Label lblZeit;
-        private System.Windows.Forms.ListBox lsbxNach;
-        private System.Windows.Forms.ListBox lsbxVon;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtEmail;
+        private System.Windows.Forms.Button btbEmail;
+        private System.Windows.Forms.ListBox lsbxSuche_Nache;
+        private System.Windows.Forms.ListBox lsbxSuche_Von;
+        private System.Windows.Forms.TextBox txtSuche_Nach;
+        private System.Windows.Forms.TextBox txtSuche_Von;
     }
 }
 

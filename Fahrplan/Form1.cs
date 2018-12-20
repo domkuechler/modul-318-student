@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SwissTransport;
+using System.Net.Mail;
 
 namespace Fahrplan
 {
@@ -15,39 +16,48 @@ namespace Fahrplan
     {
         Transport transport = new  Transport();
         Coordinate coordinate = new Coordinate();
+        Form2 Maps = new Form2();
         private bool Von;
         private bool Nach;
         public Form1()
         {
             InitializeComponent();
-            lsbxVon.Visible = false;
-            lsbxNach.Visible = false;
+            lsbxSuche_Von.Visible = false;
+            lsbxSuche_Nache.Visible = false;
         }
 
         private void Get_Stations(string text)
         {
-            if (text.Length >= 3)
+            try
             {
-                lsbxVon.Items.Clear();
-                Stations stations = transport.GetStations(text);
-                foreach (Station station in stations.StationList)
+                if (text.Length >= 3)
                 {
-                    if (Von == true)
+                    lsbxSuche_Von.Items.Clear();
+                    Stations stations = transport.GetStations(text);
+                    foreach (Station station in stations.StationList)
                     {
-                        lsbxVon.Items.Add(station.Name);
-                        lsbxVon.BringToFront();
-                    }
+                        if (Von == true)
+                        {
+                            lsbxSuche_Von.Items.Add(station.Name);
+                            lsbxSuche_Von.BringToFront();
+                        }
 
-                    if (Nach == true)
-                    {
-                        lsbxVon.Items.Add(station.Name);
-                        lsbxVon.BringToFront();
+                        if (Nach == true)
+                        {
+                            lsbxSuche_Nache.Items.Add(station.Name);
+                            lsbxSuche_Nache.BringToFront();
+                        }
+
                     }
-                   
                 }
+
+                Von = false;
+                Nach = false;
             }
-            Von = false;
-            Nach = false;
+            catch
+            {
+                MessageBox.Show("Es konnte keine Station gefunden werden");
+            }
         }
 
 
@@ -92,16 +102,15 @@ namespace Fahrplan
         private void Get_Grid()
         {
             Cursor.Current = Cursors.WaitCursor;
-            //lblladen.Visible = true;
             DataTable dtt_connections = new DataTable();
             dtt_connections.Columns.Add("Datum");
-            dtt_connections.Columns.Add("VON");
+            dtt_connections.Columns.Add("Von");
             dtt_connections.Columns.Add("Abfahrt");
             dtt_connections.Columns.Add("Nach");
             dtt_connections.Columns.Add("Ankunft");
             dtt_connections.Columns.Add("Gleis");
 
-            Connections connections = transport.GetConnections(txtVon.Text, txtNach.Text, dtpDatum.Value.ToString("dd-MM-yyyy"), dtpZeit.Text);
+            Connections connections = transport.GetConnections(txtSuche_Von.Text, txtSuche_Nach.Text, dtpDatum.Value.ToString("dd-MM-yyyy"), dtpZeit.Text);
 
             foreach (Connection connection in connections.ConnectionList)
             {
@@ -110,7 +119,6 @@ namespace Fahrplan
             }
 
             dtgverbindung.DataSource = dtt_connections;
-            //lblLaden.Visible = false;
             UseWaitCursor = false;
         }
 
@@ -122,7 +130,7 @@ namespace Fahrplan
             dtt_routes.Columns.Add("Linie");
 
 
-            Station station = transport.GetStations(txtVon.Text).StationList.First();
+            Station station = transport.GetStations(txtSuche_Von.Text).StationList.First();
             StationBoardRoot departures = transport.GetStationBoard(station.Name, station.Id);
 
             foreach (StationBoard station_b in departures.Entries)
@@ -149,7 +157,7 @@ namespace Fahrplan
 
         private void btnSuchen_Click(object sender, EventArgs e)
         {
-            if (txtVon.Text != string.Empty)
+            if (txtSuche_Von.Text != string.Empty)
             {
                 Get_Grid();
             }
@@ -170,51 +178,134 @@ namespace Fahrplan
                 MessageBox.Show("Bitte geben Sie einen Ort ein");
             }
         }
+        private void btnMaps_Click(object sender, EventArgs e)
+        {
+            Maps.Show();
+        }
 
-        private void txtVon_TextChanged(object sender, EventArgs e)
+        private void btbEmail_Click(object sender, EventArgs e)
+        {
+            if (txtEmail.Text == "")
+                MessageBox.Show("Bitte geben Sie eine Email-Adresse ein!");
+            else
+            {
+                try
+                {
+                    MailMessage mail = new MailMessage();
+                    mail.From = new MailAddress("modul318.andreas@gmail.com");
+                    mail.To.Add(new MailAddress(Convert.ToString(this.txtEmail)));
+                    mail.Subject = "Fahrplan";
+                    mail.Body = "Hallo, hier ein Fahrplan, den ich mit dir teilen wollte. ";
+                    mail.Body += "<b>" + Get_TableFromDataGrid() + "</b>";
+                    mail.IsBodyHtml = true;
+                    SmtpClient SmtpServer = new SmtpClient();
+                    SmtpServer.Host = "smtp.gmail.com";
+                    SmtpServer.Port = 587;
+                    SmtpServer.Credentials =
+                        new System.Net.NetworkCredential("m318.domkuechler@gmail.com", "P@ssw0rd$11");
+                    SmtpServer.EnableSsl = true;
+                    SmtpServer.Send(mail);
+                    MessageBox.Show("Email wurde erfolgreich gesendet");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                }
+            }
+        }
+
+        private void txtSuche_Von_TextChanged(object sender, EventArgs e)
         {
             Von = true;
-            lsbxVon.Items.Clear();
-            if (txtVon.Text == "" || txtVon.Text == null)
+            lsbxSuche_Von.Items.Clear();
+            if (txtSuche_Von.Text == "" || txtSuche_Von.Text == null)
             {
-                lsbxVon.Visible = false;
-                lsbxVon.Items.Clear();
+                lsbxSuche_Von.Visible = false;
+                lsbxSuche_Von.Items.Clear();
             }
             else
             {
-                lsbxVon.Visible = true;
+                lsbxSuche_Von.Visible = true;
             }
-            Get_Stations(txtVon.Text);
+            Get_Stations(txtSuche_Von.Text);
         }
 
-        private void txtNach_TabStopChanged(object sender, EventArgs e)
+        private void txtSuche_Von_KeyDown(object sender, KeyEventArgs e)
         {
-            Von = true;
-            lsbxNach.Items.Clear();
-            if (txtNach.Text == "" || txtNach.Text == null)
+            if (e.KeyCode == Keys.Down && lsbxSuche_Von.SelectedIndex < lsbxSuche_Von.Items.Count - 1)
             {
-                lsbxNach.Visible = false;
-                lsbxNach.Items.Clear();
+                lsbxSuche_Von.Focus();
+                lsbxSuche_Von.SelectedIndex++;
             }
-            else
+
+            if (e.KeyCode == Keys.Up && lsbxSuche_Von.SelectedIndex > 0)
             {
-                lsbxNach.Visible = true;
+                lsbxSuche_Von.Focus();
+                lsbxSuche_Von.SelectedIndex--;
             }
-            Get_Stations(txtNach.Text);
         }
 
-        private void txtVon_Enter(object sender, EventArgs e)
+        private void txtSuche_Von_Enter(object sender, EventArgs e)
         {
-            lsbxVon.Visible = true;
-            lsbxNach.Visible = false;
+            lsbxSuche_Von.Visible = true;
+            lsbxSuche_Nache.Visible = false;
         }
 
-        private void txtVon_KeyDown(object sender, KeyEventArgs e)
+        private void lsbxSuche_Von_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                lsbxVon.Focus();
-                lsbxVon.SelectedIndex = -1;
+                txtSuche_Von.Text = Convert.ToString(lsbxSuche_Von.SelectedItem);
+                lsbxSuche_Von.Visible = false;
+                txtSuche_Nach.Focus();
+            }
+        }
+
+        private void txtSuche_Nach_TextChanged(object sender, EventArgs e)
+        {
+            Nach = true;
+            lsbxSuche_Nache.Items.Clear();
+            if (txtSuche_Von.Text == "" || txtSuche_Von.Text == null)
+            {
+                lsbxSuche_Nache.Visible = false;
+                lsbxSuche_Nache.Items.Clear();
+            }
+            else
+            {
+                lsbxSuche_Nache.Visible = true;
+
+            }
+            Get_Stations(txtSuche_Nach.Text);
+        }
+
+        private void txtSuche_Nach_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down && lsbxSuche_Nache.SelectedIndex < lsbxSuche_Nache.Items.Count - 1)
+            {
+                lsbxSuche_Nache.Focus();
+                lsbxSuche_Nache.SelectedIndex++;
+            }
+
+            if (e.KeyCode == Keys.Up && lsbxSuche_Nache.SelectedIndex > 0)
+            {
+                lsbxSuche_Nache.Focus();
+                lsbxSuche_Nache.SelectedIndex--;
+            }
+        }
+
+        private void txtSuche_Nach_Enter(object sender, EventArgs e)
+        {
+            lsbxSuche_Von.Visible = false;
+            lsbxSuche_Nache.Visible = true;
+        }
+
+        private void lsbxSuche_Nache_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtSuche_Nach.Text = Convert.ToString(lsbxSuche_Nache.SelectedItem);
+                lsbxSuche_Nache.Visible = false;
+                btnSuchen.Focus();
             }
         }
     }
