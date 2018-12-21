@@ -44,6 +44,7 @@ namespace SwissTransport
             return null;
         }
 
+        //GetConnections date und time hinzugefügt
         public Connections GetConnections(string fromStation, string toStattion, string date, string time)
         {
             var request = CreateWebRequest("http://transport.opendata.ch/v1/connections?from=" + fromStation + "&to=" + toStattion + "&date=" + date + "&time=" + time + "&limit=6");

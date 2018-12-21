@@ -12,14 +12,14 @@ using System.Net.Mail;
 
 namespace Fahrplan
 {
-    public partial class Form1 : Form
+    public partial class Fahrplan : Form
     {
         Transport transport = new  Transport();
         Coordinate coordinate = new Coordinate();
         Form2 Maps = new Form2();
         private bool Von;
         private bool Nach;
-        public Form1()
+        public Fahrplan()
         {
             InitializeComponent();
             lsbxSuche_Von.Visible = false;

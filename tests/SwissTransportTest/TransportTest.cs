@@ -26,6 +26,7 @@ namespace SwissTransport
         }
 
         [TestMethod]
+        //Hinzufügen von einem Datum und einer Uhrezeit da ich in GetConnections Datum und zeit hinzugefügt habe
         public void Connections()
         {
             testee = new Transport();

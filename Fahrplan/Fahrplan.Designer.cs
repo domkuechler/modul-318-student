@@ -1,6 +1,6 @@
 ﻿namespace Fahrplan
 {
-    partial class Form1
+    partial class Fahrplan
     {
         /// <summary>
         /// Erforderliche Designervariable.
