@@ -61,7 +61,7 @@ namespace Fahrplan
             }
             catch
             {
-                MessageBox.Show("Es konnte keine Station gefunden werden");
+                MessageBox.Show("Es konnte keine Station gefunden werden", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -218,7 +218,7 @@ namespace Fahrplan
             }
         }
 
-        //
+        //Wenn ins texfeld hineingeklickt wird erscheint die einte ListBox und die andere verschwindet
         private void txtSuche_Von_Enter(object sender, EventArgs e)
         {
             lsbxSuche_Von.Visible = true;
@@ -282,6 +282,7 @@ namespace Fahrplan
             }
         }
 
+        //Wenn ins texfeld hineingeklickt wird erscheint die einte ListBox und die andere verschwindet
         private void txtSuche_Nach_Enter(object sender, EventArgs e)
         {
             lsbxSuche_Von.Visible = false;
@@ -304,6 +305,7 @@ namespace Fahrplan
         {
             txtSuche_Nach.Text = Convert.ToString(lsbxSuche_Nache.SelectedItem);
             lsbxSuche_Nache.Visible = false;
+            lsbxSuche_Von.Visible = false;
             btnSuchen.Focus();
         }
 
@@ -321,7 +323,7 @@ namespace Fahrplan
             }
             else
             {
-                MessageBox.Show("Bitte geben Sie zwei Orte ein");
+                MessageBox.Show("Bitte geben Sie zwei Orte ein", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -334,7 +336,7 @@ namespace Fahrplan
             }
             else
             {
-                MessageBox.Show("Bitte geben Sie einen Ort ein");
+                MessageBox.Show("Bitte geben Sie einen Ort ein", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -367,11 +369,11 @@ namespace Fahrplan
                         new System.Net.NetworkCredential("m318.domkuechler@gmail.com", "P@ssw0rd$11");
                     SmtpServer.EnableSsl = true;
                     SmtpServer.Send(mail);
-                    MessageBox.Show("Email wurde erfolgreich gesendet");
+                    MessageBox.Show("Email wurde erfolgreich gesendet", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 catch 
                 {
-                    MessageBox.Show("Error: +ex.Message");
+                    MessageBox.Show("Error: +ex.Message", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtEmail.Focus();
                 }
             }

@@ -91,13 +91,13 @@ namespace Fahrplan
             }
         }
 
-        //
+        //Wenn ins texfeld hineingeklickt wird erscheint die einte ListBox und die andere verschwindet
         private void txtStation_Enter(object sender, EventArgs e)
         {
             lsbxStation.Visible = true;
         }
 
-        //Wählt die gewählte Station und schreibt si in die Textbox
+        //Wählt die gewählte Station und schreibt sie in die Textbox
         private void lsbxStation_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -108,6 +108,7 @@ namespace Fahrplan
             }
         }
 
+        //Schreibt die gewählte Station mittels Doppelklick in die TextBox
         private void lsbxStation_DoubleClick(object sender, EventArgs e)
         {
             txtStation.Text = Convert.ToString(lsbxStation.SelectedItem);
@@ -128,7 +129,7 @@ namespace Fahrplan
             }
             else
             {
-                string url = "https://www.google.ch/maps/search/transit+stop+near";
+                url = "https://www.google.ch/maps/search/transit+stop+near";
                 webGoogle.Navigate(url);
             }
         }
@@ -151,33 +152,38 @@ namespace Fahrplan
             }
             else
             {
-                MessageBox.Show("Bitte geben Sie einen Ort ein!");
+                MessageBox.Show("Bitte geben Sie einen Ort ein!","Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
+        //Ruft die methode auf um alle Stationen in der nähe anzuzeigen
         private void btbStationen_Click(object sender, EventArgs e)
         {
-            location = true;
-            CreateGmapStation("5","4");
-            lsbxStation.Visible = false;
+           
+                location = true;
+                CreateGmapStation("5", "4");
+                lsbxStation.Visible = false; 
         }
 
+        //Versteckt das Form von google Maps
         private void btbSchliessen_Click(object sender, EventArgs e)
         {
             this.Hide();
         }
 
        
-
+        //öffnet die Web Ansicht für die jeweilige Applikation
         private void btnWeb_Click(object sender, EventArgs e)
         {
             try
             {
+                location = true;
+                CreateGmapStation("5", "4");
                 System.Diagnostics.Process.Start(url);
             }
             catch 
             {
-                MessageBox.Show("Es wurde keine Station angegeben");
+                MessageBox.Show("Es wurde keine Station angegeben" ,"Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
         }
