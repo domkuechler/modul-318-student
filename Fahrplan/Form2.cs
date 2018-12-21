@@ -16,6 +16,8 @@ namespace Fahrplan
         Transport transport = new Transport();
         Coordinate coordinate = new Coordinate();
         private bool Station;
+        private bool location;
+        private string url;
         public Form2()
         {
             InitializeComponent();
@@ -23,8 +25,9 @@ namespace Fahrplan
             lsbxStation.Visible = false;
         }
 
+        #region station
         //Methode um die Stationen zu suchen
-        private void Get_Stations(string text)
+        private void GetStations(string text)
         {
             try
             {
@@ -51,16 +54,10 @@ namespace Fahrplan
                 MessageBox.Show("Es konnte keine Verbindung hergestellt werden überprüfen sie die Internet verbindung");
             }
         }
+        #endregion
 
-        //Erstellt eine Gmap für die gesuchte Station
-        private void Create_GmapStation(string x, string y)
-        {
-            string url = "https://www.google.ch/maps/place/" + x + "," + y;
-            webGoogle.Navigate(url);
-        }
+        #region Ergonimie
 
-
-       
         //Automatische vervollständigung
         private void txtStation_TextChanged(object sender, EventArgs e)
         {
@@ -75,7 +72,7 @@ namespace Fahrplan
             {
                 lsbxStation.Visible = true;
             }
-            Get_Stations(txtStation.Text);
+            GetStations(txtStation.Text);
         }
 
         //von von textbox auf Listbox zugreifen mittels Tastatur
@@ -111,19 +108,79 @@ namespace Fahrplan
             }
         }
 
+        private void lsbxStation_DoubleClick(object sender, EventArgs e)
+        {
+            txtStation.Text = Convert.ToString(lsbxStation.SelectedItem);
+            lsbxStation.Visible = false;
+            btnSuchen.Focus();
+        }
+
+        #endregion
+
+        #region Map
+        //Erstellt ein Gmap für die gesuchte Station
+        private void CreateGmapStation(string x, string y)
+        {
+            if (location != true)
+            {
+                url = "https://www.google.ch/maps/place/" + x + "," + y;
+                webGoogle.Navigate(url);
+            }
+            else
+            {
+                string url = "https://www.google.ch/maps/search/transit+stop+near";
+                webGoogle.Navigate(url);
+            }
+        }
+
+
+
+        #endregion
+
+        #region Events
+
         //Ruft die methode Gmap auf um
         private void btnSuchen_Click(object sender, EventArgs e)
         {
+            location = false;
             if (txtStation.Text != string.Empty)
             {
                 Stations stations = transport.GetStations(txtStation.Text);
                 Station station = stations.StationList[0];
-                Create_GmapStation(Convert.ToString(station.Coordinate.XCoordinate).Replace(',', '.'), Convert.ToString(station.Coordinate.YCoordinate).Replace(',', '.'));
+                CreateGmapStation(Convert.ToString(station.Coordinate.XCoordinate).Replace(',', '.'), Convert.ToString(station.Coordinate.YCoordinate).Replace(',', '.'));
             }
             else
             {
                 MessageBox.Show("Bitte geben Sie einen Ort ein!");
             }
         }
+
+        private void btbStationen_Click(object sender, EventArgs e)
+        {
+            location = true;
+            CreateGmapStation("5","4");
+            lsbxStation.Visible = false;
+        }
+
+        private void btbSchliessen_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
+
+       
+
+        private void btnWeb_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start(url);
+            }
+            catch 
+            {
+                MessageBox.Show("Es wurde keine Station angegeben");
+            }
+            
+        }
+        #endregion
     }
 }
